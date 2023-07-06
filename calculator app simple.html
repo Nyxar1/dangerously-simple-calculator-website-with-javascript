@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      text-align: center;
+      font-family: Arial, sans-serif;
+      padding: 40px;
+    }
+
+    h1 {
+      color: #FF69B4;
+    }
+
+    .calculator {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-top: 40px;
+    }
+
+    .button {
+      background-color: #FF69B4;
+      color: white;
+      border: none;
+      padding: 15px 20px;
+      font-size: 18px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .button:hover {
+      background-color: #FF8BC1;
+    }
+
+    .button:active {
+      background-color: #FF5C8C;
+    }
+
+    #result {
+      margin-top: 40px;
+      font-size: 24px;
+      color: #555555;
+    }
+  </style>
+</head>
+<body>
+  <h1>Web Calculator</h1>
+  <div class="calculator">
+    <button class="button" onclick="appendToExpression('7')">7</button>
+    <button class="button" onclick="appendToExpression('8')">8</button>
+    <button class="button" onclick="appendToExpression('9')">9</button>
+    <button class="button" onclick="appendToExpression('/')">/</button>
+    <button class="button" onclick="appendToExpression('4')">4</button>
+    <button class="button" onclick="appendToExpression('5')">5</button>
+    <button class="button" onclick="appendToExpression('6')">6</button>
+    <button class="button" onclick="appendToExpression('*')">*</button>
+    <button class="button" onclick="appendToExpression('1')">1</button>
+    <button class="button" onclick="appendToExpression('2')">2</button>
+    <button class="button" onclick="appendToExpression('3')">3</button>
+    <button class="button" onclick="appendToExpression('-')">-</button>
+    <button class="button" onclick="appendToExpression('0')">0</button>
+    <button class="button" onclick="appendToExpression('.')">.</button>
+    <button class="button" onclick="clearExpression()">C</button>
+    <button class="button"< onclick="appendToExpression('+')">+</button>
+    <button class="button" onclick="evaluateExpression()">=</button>
+  </div>
+  <p id="result"></p>
+
+  <script>
+    let expression = '';
+    const resultElement = document.getElementById('result');
+
+    function appendToExpression(value) {
+      expression += value;
+      resultElement.textContent = expression;
+    }
+
+    function clearExpression() {
+      expression = '';
+      resultElement.textContent = '';
+    }
+
+    function evaluateExpression() {
+      try {
+        const result = eval(expression);
+        resultElement.textContent = result;
+        expression = result.toString();
+      } catch (error) {
+        resultElement.textContent = 'Error';
+        console.error('Error:', error);
+      }
+    }
+  </script>
+</body>
+</html>
